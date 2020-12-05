@@ -16,3 +16,7 @@ Sometimes it's convenient to modify the list during iteration. However, in this 
 #### BinaryHeap
 
 `BinaryHeap` is a common way of implementing priority queue.
+
+### NuGet
+
+[This package is available on the nuget.org](https://www.nuget.org/packages/FluentCollections_leverindev)
