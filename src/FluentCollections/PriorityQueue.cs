@@ -3,30 +3,29 @@
 namespace FluentCollections
 {
     /// <summary>
-    /// Represents a binary heap. It's a common way of implementing priority queue.
-    /// For more information follow the link: https://en.wikipedia.org/wiki/Binary_heap
-    /// <typeparam name="T">The type of elements in the binary heap.</typeparam>
+    /// Represents a priority queue.
+    /// <typeparam name="T">The type of elements in the priority queue.</typeparam>
     /// </summary>
-    public class BinaryHeap<T>
+    public class PriorityQueue<T>
     {
-        private readonly List<T> _heap;
+        private readonly List<T> _items;
         private readonly IComparer<T> _comparer;
 
-        public BinaryHeap(IComparer<T> comparer = null, int capacity = 0)
+        public PriorityQueue(IComparer<T> comparer = null, int capacity = 0)
         {
-            _heap = capacity == 0 ? new List<T>() : new List<T>(capacity);
+            _items = capacity == 0 ? new List<T>() : new List<T>(capacity);
             _comparer = comparer ?? Comparer<T>.Default;
         }
 
-        public int Count => _heap.Count;
+        public int Count => _items.Count;
 
         public T Dequeue()
         {
-            T result = _heap[0];
-            _heap[0] = _heap[_heap.Count - 1];
-            _heap.RemoveAt(_heap.Count - 1);
+            T result = _items[0];
+            _items[0] = _items[_items.Count - 1];
+            _items.RemoveAt(_items.Count - 1);
 
-            if (_heap.Count > 1)
+            if (_items.Count > 1)
             {
                 Heapify(0);
             }
@@ -36,16 +35,16 @@ namespace FluentCollections
 
         public T Peek()
         {
-            return _heap[0];
+            return _items[0];
         }
 
         public void Add(T value)
         {
-            _heap.Add(value);
-            int i = _heap.Count - 1;
+            _items.Add(value);
+            int i = _items.Count - 1;
             int parentIndex = (i - 1) / 2;
 
-            while (i > 0 && _comparer.Compare(_heap[parentIndex], _heap[i]) > 0)
+            while (i > 0 && _comparer.Compare(_items[parentIndex], _items[i]) > 0)
             {
                 Swap(i, parentIndex);
                 i = parentIndex;
@@ -55,7 +54,7 @@ namespace FluentCollections
 
         public void Clear()
         {
-            _heap.Clear();
+            _items.Clear();
         }
 
         private void Heapify(int index)
@@ -66,12 +65,12 @@ namespace FluentCollections
                 int rightChildIndex = 2 * index + 2;
                 int bestChildIndex = index;
 
-                if (leftChildIndex < _heap.Count && _comparer.Compare(_heap[leftChildIndex], _heap[bestChildIndex]) < 0)
+                if (leftChildIndex < _items.Count && _comparer.Compare(_items[leftChildIndex], _items[bestChildIndex]) < 0)
                 {
                     bestChildIndex = leftChildIndex;
                 }
 
-                if (rightChildIndex < _heap.Count && _comparer.Compare(_heap[rightChildIndex], _heap[bestChildIndex]) < 0)
+                if (rightChildIndex < _items.Count && _comparer.Compare(_items[rightChildIndex], _items[bestChildIndex]) < 0)
                 {
                     bestChildIndex = rightChildIndex;
                 }
@@ -88,9 +87,9 @@ namespace FluentCollections
 
         private void Swap(int i1, int i2)
         {
-            T temp = _heap[i1];
-            _heap[i1] = _heap[i2];
-            _heap[i2] = temp;
+            T temp = _items[i1];
+            _items[i1] = _items[i2];
+            _items[i2] = temp;
         }
     }
 }

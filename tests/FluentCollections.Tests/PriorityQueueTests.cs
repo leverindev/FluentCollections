@@ -3,28 +3,28 @@ using Xunit;
 
 namespace FluentCollections.Tests
 {
-    public class BinaryHeapTests
+    public class PriorityQueueTests
     {
         [Fact]
-        public void FillAndReadHeap_ReturnsExpectedCollection()
+        public void FillAndReadQueue_ReturnsExpectedCollection()
         {
             // Arrange
             var sourceCollection = new[] { 1, 5, 6, 3, 7, 4, 8 };
             var expectedResultCollection = new[] { 1, 3, 4, 5, 6, 7, 8 };
 
-            var heap = new BinaryHeap<int>();
+            var queue = new PriorityQueue<int>();
 
             // Act
-            // Fill heap
+            // Fill queue
             foreach (var item in sourceCollection)
             {
-                heap.Add(item);
+                queue.Add(item);
             }
 
             var resultCollection = new List<int>();
-            while (heap.Count > 0)
+            while (queue.Count > 0)
             {
-                resultCollection.Add(heap.Dequeue());
+                resultCollection.Add(queue.Dequeue());
             }
 
             // Assert
