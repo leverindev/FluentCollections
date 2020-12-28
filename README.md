@@ -13,9 +13,9 @@ Sometimes it's convenient to modify the list during iteration. However, in this 
 
 `ModifiableList` allows to modify the collection during iteration, but the changes are applied only after calling `Save` method.
 
-#### BinaryHeap
+#### PriorityQueue
 
-`BinaryHeap` is a common way of implementing priority queue.
+Binary heap is a common way of implementing priority queue. For more information follow the [link](https://en.wikipedia.org/wiki/Binary_heap)
 
 ### NuGet
 
