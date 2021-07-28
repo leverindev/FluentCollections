@@ -28,28 +28,7 @@ namespace FluentCollections.Tests
             }
 
             // Assert
-            Assert.True(IsCollectionsEqual(expectedResultCollection, resultCollection));
-        }
-
-        private static bool IsCollectionsEqual(int[] expected, List<int> list)
-        {
-            if (expected.Length != list.Count)
-            {
-                return false;
-            }
-
-            int index = 0;
-            foreach (var item in list)
-            {
-                if (item != expected[index])
-                {
-                    return false;
-                }
-
-                index++;
-            }
-
-            return true;
+            Assert.True(Extensions.CollectionExtensions.IsCollectionsEqual(expectedResultCollection, resultCollection));
         }
     }
 }
